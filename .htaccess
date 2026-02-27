@@ -1,0 +1,67 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+
+# Redirect requests without the .php extension to the .php files
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/(index|faqs|Terms)\.php$ [NC]
+RewriteRule ^([^/]+)$ $1.php [L]
+
+# Handle error pages
+ErrorDocument 404 error/not-found.php
+ErrorDocument 403 error/403.php
+ErrorDocument 500 error/500.php
+ErrorDocument 401 error/401.php
+ErrorDocument 400 error/400.php
+
+# Redirect non-existing files and directories to not-found.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/not-found.php$ [NC]
+RewriteRule ^(.*)$ error/not-found.php [L]
+
+# Prevent access to sensitive files
+<FilesMatch "^(wp-config\.php|config\.php|\.htaccess)$">
+    Require all denied
+</FilesMatch>
+
+# Allow Googlebot log access
+<Files "googlebot_access.log">
+    Require all granted
+</Files>
+
+# Prevent directory listings
+Options -Indexes
+
+# Disable server signature & server header
+ServerSignature Off
+Header unset Server
+
+# Allow Googlebot and AdsBot-Google to cache normally
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|png|jpg|jpeg|gif|webp|svg)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
+
+  # Googlebot and AdsBot-Google caching exception
+  SetEnvIfNoCase User-Agent "Googlebot" ALLOWCACHE
+  SetEnvIfNoCase User-Agent "AdsBot-Google" ALLOWCACHE
+
+  Header unset Cache-Control env=ALLOWCACHE
+  Header unset Pragma env=ALLOWCACHE
+  Header unset Expires env=ALLOWCACHE
+</IfModule>
+
+# Keep robots.txt and ads.txt accessible
+<Files "robots.txt">
+Order Allow,Deny
+Allow from all
+</Files>
+
+<Files "ads.txt">
+Order Allow,Deny
+Allow from all
+</Files>
