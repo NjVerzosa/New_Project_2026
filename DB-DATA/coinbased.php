@@ -1,6 +1,6 @@
 <?php
 session_start();
-include __DIR__ . '/../../includes/pdo.php';
+include __DIR__ . './DB_DATA/pdo.php';
 
 $accNumber = isset($_GET['acc_number']) ? intval($_GET['acc_number']) : 0;
 $email = isset($_GET['email']) ? filter_var($_GET['email'], FILTER_SANITIZE_EMAIL) : '';

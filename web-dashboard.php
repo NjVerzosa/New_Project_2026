@@ -269,7 +269,7 @@ include 'user-sessions.php';
                                 echo "<p class='text-danger'>Database connection error</p>";
                             } else {
                                 try {
-                                    $sql = "SELECT id, acc_number, score, date FROM tasks WHERE email = ? AND acc_number = ? AND status = 'Pending' ORDER BY date DESC";
+                                    $sql = "SELECT id, acc_number, score, date FROM all_tasks WHERE email = ? AND acc_number = ? AND status = 'Pending' ORDER BY date DESC";
                                     $stmt = $con->prepare($sql);
 
                                     if (!$stmt) {

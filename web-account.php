@@ -1,7 +1,7 @@
 <?php
-include 'user-sessions.php';
+session_start();
+include 'user-sessions.php';  // If database.php is one level up in config folder
 ?>
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark" style="font-size:14px">
 
@@ -33,7 +33,7 @@ include 'user-sessions.php';
 <body class="noselect">
     <div class="wrapper">
 
-        <?php include 'sidebar.php'; ?>
+        <?php include 'web-sidebar.php'; ?>
 
         <div class="main">
 
@@ -47,7 +47,7 @@ include 'user-sessions.php';
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="../userProfile/<?php echo htmlspecialchars($row['profile'], ENT_QUOTES, 'UTF-8'); ?>"
+                                <img src="userProfile/<?php echo htmlspecialchars($row['profile'], ENT_QUOTES, 'UTF-8'); ?>"
                                     style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; max-width: 100%; max-height: 100%;"
                                     class="avatar img-fluid rounded"
                                     alt="User Profile Picture">
@@ -395,7 +395,7 @@ include 'user-sessions.php';
                                         $accNumber = $row['acc_number'];
 
                                         // Use prepared statement to prevent SQL injection
-                                        $sql = "SELECT amount, gcash_number, date_requested, status FROM withdrawals WHERE acc_number = ? ORDER BY date_requested DESC";
+                                        $sql = "SELECT amount, gcash_number, date_requested, status FROM  WHERE acc_number = ? ORDER BY date_requested DESC";
                                         $stmt = mysqli_prepare($con, $sql);
 
                                         if ($stmt) {
@@ -445,7 +445,7 @@ include 'user-sessions.php';
 
             </main>
 
-            <?php include 'footer.php'; ?>
+            <?php include 'web-footer.php'; ?>
 
         </div>
     </div>
