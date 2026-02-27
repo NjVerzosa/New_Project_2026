@@ -21,13 +21,13 @@
                     <li class="sidebar-item">
                         <a href="web-encoding.php" class="sidebar-link game-menu-link">
                             <i class="fa-solid fa-keyboard pe-2"></i>
-                            <span class="game-menu-text">Encoding Tasks</span>
+                            <span class="game-menu-text">Typing Numbers</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="web-riddle.php" class="sidebar-link game-menu-link">
                             <i class="fa-solid fa-puzzle-piece pe-2"></i>
-                            <span class="game-menu-text">Riddle Task</span>
+                            <span class="game-menu-text">Multiplce Choices</span>
                         </a>
                     </li>
                 </ul>

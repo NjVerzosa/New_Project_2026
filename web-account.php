@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'user-sessions.php';  // If database.php is one level up in config folder
+include 'user-sessions.php';   
 ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark" style="font-size:14px">
@@ -27,7 +27,7 @@ include 'user-sessions.php';  // If database.php is one level up in config folde
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="landing-assets/assets/style.css">
 </head>
 
 <body class="noselect">
@@ -92,7 +92,7 @@ include 'user-sessions.php';  // If database.php is one level up in config folde
                     <div class="row align-items-center">
                         <div class="col-2 text-center">
                             <div class="rounded-circle overflow-hidden" style="width: 80px; height: 80px; background-color: #e9ecef; display: flex; justify-content: center; align-items: center;">
-                                <img src="../userProfile/<?php echo htmlspecialchars($row['profile'], ENT_QUOTES, 'UTF-8'); ?>"
+                                <img src="userProfile/<?php echo htmlspecialchars($row['profile'], ENT_QUOTES, 'UTF-8'); ?>"
                                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid white; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);"
                                     alt="User Profile Picture" id="upload-profile" data-toggle="modal" data-target="#updateImageModal">
                             </div>
@@ -395,7 +395,7 @@ include 'user-sessions.php';  // If database.php is one level up in config folde
                                         $accNumber = $row['acc_number'];
 
                                         // Use prepared statement to prevent SQL injection
-                                        $sql = "SELECT amount, gcash_number, date_requested, status FROM  WHERE acc_number = ? ORDER BY date_requested DESC";
+                                        $sql = "SELECT amount, date_requested, status FROM records WHERE acc_number = ? ORDER BY date_requested DESC";
                                         $stmt = mysqli_prepare($con, $sql);
 
                                         if ($stmt) {
