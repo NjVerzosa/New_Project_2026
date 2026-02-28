@@ -27,13 +27,13 @@ include 'user-sessions.php';
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="landing-assets/assets/style.css">
 </head>
 
 <body class="noselect">
     <div class="wrapper">
 
-        <?php include 'sidebar.php'; ?>
+        <?php include 'web-sidebar.php'; ?>
 
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom" style="background: #2a2438;">
@@ -157,7 +157,7 @@ include 'user-sessions.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $stmt = $con->prepare("SELECT id, profile, registered_at, earned_coins FROM users WHERE my_invitation_code = ?");
+                                        $stmt = $con->prepare("SELECT id, profile, registered_at, balance FROM users WHERE my_invitation_code = ?");
                                         $stmt->bind_param("s", $row['my_referral']);
                                         $stmt->execute();
                                         $result = $stmt->get_result();
@@ -171,7 +171,7 @@ include 'user-sessions.php';
                                                 <tr>
                                                     <td class="text-white text-center"><?= htmlspecialchars($data['id']) ?></td>
                                                     <td class="text-center">
-                                                        <img src="/userProfile/<?= $profileImage ?>"
+                                                        <img src="userProfile/<?= $profileImage ?>"
                                                             onclick="toggleZoom(this)" alt="Profile Image" style="width:30px;height:30px;cursor:pointer;border-radius: 50px;">
                                                     </td>
                                                     <td class="text-white text-center"><?= $registeredDate ?></td>
@@ -238,10 +238,10 @@ include 'user-sessions.php';
                     </div>
                 </div>
             </main>
-            <?php include 'footer.php'; ?>
+            <?php include 'web-footer.php'; ?>
         </div>
     </div>
 </body>
-<script src="./js/pop-up.js"></script>
+<script src="game-js/pop-up.js"></script>
 
 </html>

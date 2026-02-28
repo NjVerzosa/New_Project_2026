@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Save user progress to the server if correct
     function CorrectSaveProgress() {
-        fetch(`./includes/riddleSectionProgress.php`, {
+        fetch(`DB_DATA/riddleSectionProgress.php`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fetch and display user progress from the server
     function fetchUserProgress() {
-        fetch(`./includes/coinbased.php?acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}`)
+        fetch(`DB_DATA/coinbased.php?acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}`)
             .then(response => {
                 if (!response.ok) throw new Error('Network response was not ok');
                 return response.json();
