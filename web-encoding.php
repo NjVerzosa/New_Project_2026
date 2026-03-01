@@ -70,7 +70,7 @@ include 'user-sessions.php';
                         <div class="card-statistic-3">
                             <div class="card-icon card-icon-large text-light"><i class="fas fa-coins"></i></div>
                             <div class="mb-4">
-                                <h5 class="card-title mb-0 text-light">Earned Coins</h5>
+                                <h5 class="card-title mb-0 text-light">Net Balance</h5>
                             </div>
                             <div class="d-flex align-items-center">
                                 <!-- Display current coins -->
@@ -197,7 +197,7 @@ include 'user-sessions.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM encode WHERE email = ? AND acc_number = ? ORDER BY id DESC";
+                                        $sql = "SELECT * FROM data_entry WHERE email = ? AND acc_number = ? ORDER BY id DESC";
                                         $stmt = $con->prepare($sql);
 
                                         if ($stmt) {
@@ -298,10 +298,9 @@ include 'user-sessions.php';
 let userId = <?= json_encode($row['id'] ?? null) ?>;
 let acc_number = <?= json_encode($row['acc_number'] ?? null) ?>;
 let userEmail = <?= json_encode($row['email'] ?? null) ?>;
-let csrfToken = <?= json_encode($_SESSION['csrf_token'] ?? ''); ?>;
 </script>
-<script src="game-js/claims.js"></script>
-<script src="game-js/encoding.js"></script>
-<script src="game-js/pop-up.js"></script>
+<script src="Logics/claims.js"></script>
+<script src="Logics/encoding.js"></script>
+<script src="Logics/pop-up.js"></script>
 
 </html>

@@ -215,12 +215,12 @@ if (isset($_POST['login'])) {
                             $timeNow = date('g:i A');
 
                             if ($user['last_login_date'] !== $today) {
-                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET last_login_date = ?, login_time = ?, status = 1, daily_login = daily_login + 10 WHERE acc_number = ?");
-                                mysqli_stmt_bind_param($updateUserStmt, "ssi", $today, $timeNow, $user["acc_number"]);
+                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET last_login_date = ?, status = 1, daily_login = daily_login + 10 WHERE acc_number = ?");
+                                mysqli_stmt_bind_param($updateUserStmt, "si", $today, $user["acc_number"]);
                                 mysqli_stmt_execute($updateUserStmt);
                                 mysqli_stmt_close($updateUserStmt);
                             } else {
-                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET status = 1, login_time = ? WHERE acc_number = ?");
+                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET status = 1 = ? WHERE acc_number = ?");
                                 mysqli_stmt_bind_param($updateUserStmt, "si", $timeNow, $user["acc_number"]);
                                 mysqli_stmt_execute($updateUserStmt);
                                 mysqli_stmt_close($updateUserStmt);

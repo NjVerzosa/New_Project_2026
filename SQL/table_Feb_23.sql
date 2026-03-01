@@ -16,7 +16,7 @@ CREATE TABLE `all_tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `riddle` (
+CREATE TABLE `data_entry` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,

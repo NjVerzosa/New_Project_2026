@@ -157,7 +157,7 @@ $stmt->close();
 date_default_timezone_set('Asia/Manila');
 $timeNow = date('g:i A');
 
-$stmt = $con->prepare("UPDATE users SET login_time = ? WHERE acc_number = ?");
-$stmt->bind_param("si", $timeNow, $_SESSION["acc_number"]);
+$stmt = $con->prepare("UPDATE users SET status = 1 WHERE acc_number = ?");
+$stmt->bind_param("i", $_SESSION["acc_number"]);
 $stmt->execute();
 $stmt->close();

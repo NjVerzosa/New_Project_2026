@@ -336,8 +336,8 @@ include 'user-sessions.php';
     let userEmail = <?= json_encode($row['email'] ?? null) ?>;
     let csrfToken = <?= json_encode($_SESSION['csrf_token'] ?? ''); ?>;
 </script>
-<script src="game-js/riddleLogic.js"></script>
-<script src="game-js/riddleQuestion.js"></script>
-<script src="game-js/pop-up.js"></script>
+<script src="Logics/riddleLogic.js"></script>
+<script src="Logics/riddleQuestion.js"></script>
+<script src="Logics/pop-up.js"></script>
 
 </html>
