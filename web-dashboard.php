@@ -214,10 +214,10 @@ include 'user-sessions.php';
                                     <div class="d-flex align-items-center">
                                         <div class="col-9">
                                             <h2 class="d-flex align-items-center mb-0 text-light">
-                                                ₱<?php echo number_format($row['daily_login_earnings'], 2); ?>
+                                                ₱<?php echo number_format($row['daily_login'], 2); ?>
                                             </h2>
                                         </div>
-                                        <?php if ($row['daily_login_earnings'] >= 1.00) { ?>
+                                        <?php if ($row['daily_login'] >= 1.00) { ?>
                                         <div class="col-8 text-right">
                                             <span class="text-light" id='dailyLogin'>
                                                 <button id="dailyLoginButton" class="btn btn-primary ms-auto"
@@ -229,7 +229,7 @@ include 'user-sessions.php';
                                         <?php }
 
                                         $maxBalance = 1.00; // Maximum balance for full progress
-                                        $progressPercentage = ($row['daily_login_earnings'] / $maxBalance) * 100; // Calculate percentage
+                                        $progressPercentage = ($row['daily_login'] / $maxBalance) * 100; // Calculate percentage
                                         $progressPercentage = min($progressPercentage, 100);
 
                                         ?>

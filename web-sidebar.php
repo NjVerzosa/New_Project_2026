@@ -21,13 +21,13 @@
                     <li class="sidebar-item">
                         <a href="web-encoding.php" class="sidebar-link game-menu-link">
                             <i class="fa-solid fa-keyboard pe-2"></i>
-                            <span class="game-menu-text">Task 1</span>
+                            <span class="game-menu-text">Digit Entry</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="web-riddle.php" class="sidebar-link game-menu-link">
                             <i class="fa-solid fa-puzzle-piece pe-2"></i>
-                            <span class="game-menu-text">Task 2</span>
+                            <span class="game-menu-text">Pick One</span>
                         </a>
                     </li>
                 </ul>
@@ -46,12 +46,12 @@
                             <span class="menu-text">Withdrawal</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
+                    <!-- <li class="sidebar-item">
                         <a href="web-payment.php" class="sidebar-link submenu-link">
                             <i class="fa-solid fa-crown pe-2"></i>
                             <span class="menu-text">Premium</span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
 
@@ -63,7 +63,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="web-logout.php" rel="nofollow" class="sidebar-link">
+                <a href="web-signOff.php" rel="nofollow" class="sidebar-link">
                     <i class="fa-solid fa-right-from-bracket pe-2"></i> Logout
                 </a>
             </li>

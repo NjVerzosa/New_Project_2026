@@ -75,7 +75,7 @@ include 'bots.php';
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="login">Login</a>
+                                <a class="dropdown-item" href="login.php">Login</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" >Scroll down to Register</a>

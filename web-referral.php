@@ -182,7 +182,7 @@ include 'user-sessions.php';
                                         } else {
                                             echo '<tr>
                                                     <td colspan="4" class="text-center py-4">
-                                                        <img src="images/record_found.jpg" alt="No records found"
+                                                        <img src="landing-assets/images/record_found.jpg" alt="No records found"
                                                             class="img-fluid" style="max-width: 50px; opacity: 0.5;">
                                                     </td>
                                                 </tr>';

@@ -215,7 +215,7 @@ if (isset($_POST['login'])) {
                             $timeNow = date('g:i A');
 
                             if ($user['last_login_date'] !== $today) {
-                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET last_login_date = ?, login_time = ?, status = 1 WHERE acc_number = ?");
+                                $updateUserStmt = mysqli_prepare($con, "UPDATE users SET last_login_date = ?, login_time = ?, status = 1, daily_login = daily_login + 10 WHERE acc_number = ?");
                                 mysqli_stmt_bind_param($updateUserStmt, "ssi", $today, $timeNow, $user["acc_number"]);
                                 mysqli_stmt_execute($updateUserStmt);
                                 mysqli_stmt_close($updateUserStmt);
@@ -238,6 +238,7 @@ if (isset($_POST['login'])) {
                                         header("Location: web-dashboard.php");
                                         exit();
                                     }
+                                    
 
                                 default:
                                     $_SESSION['exist'] = "Invalid user";
@@ -393,7 +394,7 @@ if (isset($_POST['login'])) {
                                         <div class="form-outline mb-4 position-relative">
                                             <label class="form-label" for="password">Password</label>
                                             <div class="position-relative">
-                                                <input type="password" name="password" id="password" class="form-control"
+                                                <input type="password" name="password" id="password" value="Nj_Verzosa@24" class="form-control"
                                                     placeholder="" required style="padding-right: 40px;">
                                                 <span class="eye-icon" onclick="togglePasswordVisibility()"
                                                     style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
