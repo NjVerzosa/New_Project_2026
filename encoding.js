@@ -199,30 +199,34 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(console.error);
   }
 
+
+  
   function InsertDATA() {
-        fetch(`../DB_DATA/insertData.php`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: `acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}&score=${encodeURIComponent(5)}`,
-        })
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                  window.reload()
-                    fetchUserProgress();
-                } else {
-                    console.error("Failed to save progress:", data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
-    }
+      const scoreValue = 1;
+
+    fetch(`insertData.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}&score=${encodeURIComponent(scoreValue)}`,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json();
+      })
+      .then((data) => {
+        if (data.success) {
+          window.reload();
+          fetchUserProgress();
+        } else {
+          console.error("Failed to save progress:", data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
 
   function checkAnswer() {
     if (userInput.value === currentNumber.toString()) {

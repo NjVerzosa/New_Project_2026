@@ -65,35 +65,6 @@ include 'user-sessions.php';
             <main class="content px-3 py-4">
 
                 <div class="row justify-content-center">
-                    <div class="card text-white p-3 mb-2"
-                        style="width: 100%; background: linear-gradient(135deg, rgba(101,78,163,0.8) 0%, rgba(41,10,89,0.9) 100%); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(101,78,163,0.3);">
-                        <div class="card-statistic-3">
-                            <div class="card-icon card-icon-large text-light"><i class="fas fa-coins"></i></div>
-                            <div class="mb-4">
-                                <h5 class="card-title mb-0 text-light">Net Balance</h5>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <!-- Display current coins -->
-                                <div class="col-9">
-                                    <h2 class="d-flex align-items-center mb-0 text-light" id="coins">
-                                        ₱<?php echo number_format($row['balance'], 2); ?>
-                                    </h2>
-                                </div>
-                            </div>
-                            <!-- Progress bar (max 50.00) -->
-                            <?php
-                            $maxBalance = 50.00; // Updated max balance
-                            $progressPercentage = ($row['balance'] / $maxBalance) * 100;
-                            $progressPercentage = min($progressPercentage, 100); // Cap at 100%
-                            ?>
-                            <div class="progress mt-1" data-height="8" style="height: 8px;">
-                                <div class="progress-bar l-bg-green" role="progressbar"
-                                    aria-valuenow="<?php echo $progressPercentage; ?>" aria-valuemin="0"
-                                    aria-valuemax="100" style="width: <?php echo $progressPercentage; ?>%;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card bg-dark text-white">
                         <div class="card-header">
                             <h5>ENCODING NUMBER TASK</h5>
@@ -140,6 +111,36 @@ include 'user-sessions.php';
                                 <span class="english" style="text-align: center;">
                                     Last updated on: 10 October 2024.
                                 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-white p-3 mb-2"
+                        style="width: 100%; background: linear-gradient(135deg, rgba(101,78,163,0.8) 0%, rgba(41,10,89,0.9) 100%); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 20px rgba(101,78,163,0.3);">
+                        <div class="card-statistic-3">
+                            <div class="card-icon card-icon-large text-light"><i class="fas fa-coins"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0 text-light">Net Balance</h5>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <!-- Display current coins with 2 decimal places -->
+                                <div class="col-9">
+                                    <h2 class="d-flex align-items-center mb-0 text-light" id="coins">
+                                        ₱<?php echo number_format($row['balance'], 2, '.', ','); ?>
+                                    </h2>
+                                </div>
+                            </div>
+                            <!-- Progress bar (max 50.00) -->
+                            <?php
+                            $maxBalance = 50; // Updated max balance
+                            $progressPercentage = ($row['balance'] / $maxBalance) * 100;
+                            $progressPercentage = min($progressPercentage, 100); // Cap at 100%
+                            ?>
+                            <div class="progress mt-1" data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-green" role="progressbar"
+                                    aria-valuenow="<?php echo $progressPercentage; ?>" aria-valuemin="0"
+                                    aria-valuemax="100" style="width: <?php echo $progressPercentage; ?>%;">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,28 +220,29 @@ include 'user-sessions.php';
                                                     } else {
                                                         $displayDate = !empty($entryDate) ? date('D, m-Y', strtotime($data['date'])) : 'N/A';
                                                     }
-                                        ?>
-                                        <tr style="border: none !important;">
-                                            <td
-                                                style="white-space: nowrap; text-align: center; border: none !important;">
-                                                <?= htmlspecialchars($displayDate, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td
-                                                style="white-space: nowrap; text-align: center; border: none !important;">
-                                                <?= htmlspecialchars($data['score'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?>
-                                            </td>
-                                        </tr>
-                                        <?php
+                                                    ?>
+                                                    <tr style="border: none !important;">
+                                                        <td
+                                                            style="white-space: nowrap; text-align: center; border: none !important;">
+                                                            <?= htmlspecialchars($displayDate, ENT_QUOTES, 'UTF-8'); ?>
+                                                        </td>
+                                                        <td
+                                                            style="white-space: nowrap; text-align: center; border: none !important;">
+                                                            <?= htmlspecialchars($data['score'] ?? 'N/A', ENT_QUOTES, 'UTF-8'); ?>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
                                                 }
                                             } else {
                                                 ?>
-                                        <tr style="border: none !important;">
-                                            <td colspan="4"
-                                                style="text-align: center; padding: 20px; border: none !important;">
-                                                <img src="landing-assets/images/record_found.jpg" alt=""
-                                                    style="width: 50px; height: 50px; border-radius: 10px; opacity: 0.5;">
-                                            </td>
-                                        </tr>
-                                        <?php
+                                                <tr style="border: none !important;">
+                                                    <td colspan="4"
+                                                        style="text-align: center; padding: 20px; border: none !important;">
+                                                        <img src="landing-assets/images/record_found.jpg" alt=""
+                                                            style="width: 50px; height: 50px; border-radius: 10px; opacity: 0.5;">
+                                                    </td>
+                                                </tr>
+                                                <?php
                                             }
                                         }
                                         ?>
@@ -250,11 +252,11 @@ include 'user-sessions.php';
                         </div>
                     </div>
                 </div>
-                <?php 
+                <?php
                 // include 'embeded.php';
-                 ?>
+                ?>
             </main>
-            <?php 
+            <?php
             // include 'footer.php'; 
             ?>
         </div>
@@ -295,12 +297,12 @@ include 'user-sessions.php';
     </script>
 </body>
 <script>
-let userId = <?= json_encode($row['id'] ?? null) ?>;
-let acc_number = <?= json_encode($row['acc_number'] ?? null) ?>;
-let userEmail = <?= json_encode($row['email'] ?? null) ?>;
+    let userId = <?= json_encode($row['id'] ?? null) ?>;
+    let acc_number = <?= json_encode($row['acc_number'] ?? null) ?>;
+    let userEmail = <?= json_encode($row['email'] ?? null) ?>;
 </script>
 <script src="Logics/claims.js"></script>
-<script src="Logics/encoding.js"></script>
+<script src="encoding.js"></script>
 <script src="Logics/pop-up.js"></script>
 
 </html>

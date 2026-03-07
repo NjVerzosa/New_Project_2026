@@ -31,7 +31,7 @@ CREATE TABLE `all_tasks` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) DEFAULT NULL,
+  `score` int(255) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'PENDING'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -42,11 +42,11 @@ CREATE TABLE `all_tasks` (
 -- Table structure for table `encode`
 --
 
-CREATE TABLE `encode` (
+CREATE TABLE `data_entry` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) DEFAULT NULL,
+  `score` int(255) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,12 +56,12 @@ CREATE TABLE `encode` (
 -- Table structure for table `records`
 --
 
-CREATE TABLE `records` (
+CREATE TABLE `cashout_history` (
   `id` int(11) NOT NULL,
   `acc_number` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `amount` varchar(255) DEFAULT NULL,
-  `ref` varchar(255) DEFAULT NULL,
+  `amount` int(255) NOT NULL DEFAULT 0,
+  `ref` int(255) NOT NULL DEFAULT 0,
   `date_requested` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -71,11 +71,11 @@ CREATE TABLE `records` (
 -- Table structure for table `riddle`
 --
 
-CREATE TABLE `riddle` (
+CREATE TABLE `pick_one` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) DEFAULT NULL,
+  `score` int(255) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -90,8 +90,7 @@ CREATE TABLE `users` (
   `my_referral` varchar(255) DEFAULT NULL,
   `my_referral_earnings` int(255) NOT NULL DEFAULT 0,
   `registered_at` varchar(255) DEFAULT NULL,
-  `terms` int(255) NOT NULL DEFAULT 0,
-  `acc_number` varchar(255) NOT NULL DEFAULT '0',
+  `acc_number` int(255) NOT NULL DEFAULT 0,
   `role` varchar(255) NOT NULL DEFAULT 'Player',
   `email` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -99,10 +98,10 @@ CREATE TABLE `users` (
   `status` int(255) DEFAULT 0,
   `code` int(255) NOT NULL DEFAULT 0,
   `profile` varchar(255) NOT NULL DEFAULT 'profile.jpg',
-  `balance` int(255) NOT NULL DEFAULT 50,
+  `balance` int(255) NOT NULL DEFAULT 0,
   `total_income` int(255) NOT NULL DEFAULT 0,
-  `number` varchar(255) DEFAULT NULL,
-  `amount` int(255) DEFAULT NULL,
+  `number` int(255) NOT NULL DEFAULT 0,
+  `amount` int(255) NOT NULL DEFAULT 0,
   `date_requested` varchar(255) DEFAULT NULL,
   `request_status` varchar(255) DEFAULT NULL,
   `last_login_date` varchar(255) DEFAULT NULL,
@@ -117,8 +116,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `my_referral`, `my_referral_earnings`, `registered_at`, `terms`, `acc_number`, `role`, `email`, `username`, `password`, `status`, `code`, `profile`, `balance`, `total_income`, `number`, `amount`, `date_requested`, `request_status`, `last_login_date`, `daily_login`, `daily_login_earnings`, `login_time`, `device_id`, `my_invitation_code`) VALUES
-(2, 'C2OTL8IWAX', 0, 'Fri, 27 Feb 2026 02:31 PM', 0, '29471782', 'Player', 'njverzosa24@gmail.com', 'Developer', '$2y$10$3LCv.cUoYmhxGXRH.GEJgOxqNlPoSbN8Hg8VtYHEKSzjCSGfte49a', 1, 0, 'profile.jpg', 50, 0, NULL, NULL, NULL, NULL, 'Sun, 1 Mar 2026', 20, 0, '1:30 PM', '5371a81f-38d8-4df2-b4a9-f0269c58ab51', NULL);
+-- INSERT INTO `users` (`id`, `my_referral`, `my_referral_earnings`, `registered_at`, `terms`, `acc_number`, `role`, `email`, `username`, `password`, `status`, `code`, `profile`, `balance`, `total_income`, `number`, `amount`, `date_requested`, `request_status`, `last_login_date`, `daily_login`, `daily_login_earnings`, `login_time`, `device_id`, `my_invitation_code`) VALUES
+-- (2, 'C2OTL8IWAX', 0, 'Fri, 27 Feb 2026 02:31 PM', 0, '29471782', 'Player', 'njverzosa24@gmail.com', 'Developer', '$2y$10$3LCv.cUoYmhxGXRH.GEJgOxqNlPoSbN8Hg8VtYHEKSzjCSGfte49a', 1, 0, 'profile.jpg', 50, 0, NULL, NULL, NULL, NULL, 'Sun, 1 Mar 2026', 20, 0, '1:30 PM', '5371a81f-38d8-4df2-b4a9-f0269c58ab51', NULL);
 
 --
 -- Indexes for dumped tables
@@ -133,19 +132,19 @@ ALTER TABLE `all_tasks`
 --
 -- Indexes for table `encode`
 --
-ALTER TABLE `encode`
+ALTER TABLE `data_entry`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `records`
 --
-ALTER TABLE `records`
+ALTER TABLE `cashout_history`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `riddle`
 --
-ALTER TABLE `riddle`
+ALTER TABLE `pick_one`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -167,19 +166,19 @@ ALTER TABLE `all_tasks`
 --
 -- AUTO_INCREMENT for table `encode`
 --
-ALTER TABLE `encode`
+ALTER TABLE `data_entry`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `records`
 --
-ALTER TABLE `records`
+ALTER TABLE `cashout_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `riddle`
 --
-ALTER TABLE `riddle`
+ALTER TABLE `pick_one`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -192,3 +191,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+-- For users table balance column
+ALTER TABLE users MODIFY balance DECIMAL(10,2) DEFAULT 0.00;
+
+-- For data_entry count column  
+ALTER TABLE data_entry MODIFY count DECIMAL(10,2) DEFAULT 0.00;

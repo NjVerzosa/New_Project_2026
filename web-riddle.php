@@ -216,7 +216,7 @@ include 'user-sessions.php';
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM riddle WHERE email = ? AND acc_number = ? ORDER BY id DESC";
+                                        $sql = "SELECT * FROM pick_one WHERE email = ? AND acc_number = ? ORDER BY id DESC";
                                         $stmt = $con->prepare($sql);
 
                                         if ($stmt) {

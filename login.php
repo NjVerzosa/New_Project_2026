@@ -130,7 +130,7 @@ if ($name) {
     exit();
 }
 
-ini_set('display_errors', 0);
+// ini_set('display_errors', 0);
 include 'includes/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -260,14 +260,14 @@ if (isset($_POST['login'])) {
                             header("Location: user-setupData.php");
                             exit();
                         } else {
-                            $_SESSION['exist'] = "This email or password is incorrect";
+                            $_SESSION['exist'] = "Please use the password we provided";
                         }
                     }
                 }
             } else {
                 $_SESSION['exist'] = "This email or username is not registered";
                 $_SESSION['email'] = $email;
-                header("Location: login");
+                header("Location: login.php");
                 exit();
             }
         } catch (Exception $e) {
@@ -383,7 +383,7 @@ if (isset($_POST['login'])) {
                                     <?php } ?>
 
                                     <form action="" method="POST" enctype="multipart/form-data">
-                                        <input type="text" id="device_id" name="device_id">
+                                        <input type="hidden" id="device_id" name="device_id">
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">Email</label>
                                             <input type="text" id="email" class="form-control"
