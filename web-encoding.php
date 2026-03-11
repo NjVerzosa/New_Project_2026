@@ -123,16 +123,16 @@ include 'user-sessions.php';
                                 <h5 class="card-title mb-0 text-light">Net Balance</h5>
                             </div>
                             <div class="d-flex align-items-center">
-                                <!-- Display current coins with 2 decimal places -->
+                                <!-- Display current coins with 5 decimal places -->
                                 <div class="col-9">
                                     <h2 class="d-flex align-items-center mb-0 text-light" id="coins">
-                                        ₱<?php echo number_format($row['balance'], 2, '.', ','); ?>
+                                        ₱<?php echo number_format($row['balance'], 5, '.', ''); ?>
                                     </h2>
                                 </div>
                             </div>
-                            <!-- Progress bar (max 50.00) -->
+                            <!-- Progress bar (max 50.00000) -->
                             <?php
-                            $maxBalance = 50; // Updated max balance
+                            $maxBalance = 50.00000; // Updated max balance with 5 decimals
                             $progressPercentage = ($row['balance'] / $maxBalance) * 100;
                             $progressPercentage = min($progressPercentage, 100); // Cap at 100%
                             ?>

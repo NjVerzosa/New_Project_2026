@@ -31,7 +31,7 @@ CREATE TABLE `all_tasks` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) NOT NULL DEFAULT 0,
+  `count` int(11) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'PENDING'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -46,7 +46,7 @@ CREATE TABLE `data_entry` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) NOT NULL DEFAULT 0,
+  `count` int(11) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -75,7 +75,7 @@ CREATE TABLE `pick_one` (
   `id` int(11) NOT NULL,
   `acc_number` int(255) NOT NULL DEFAULT 0,
   `email` varchar(255) DEFAULT NULL,
-  `score` int(255) NOT NULL DEFAULT 0,
+  `count` int(11) NOT NULL DEFAULT 0,
   `date` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -86,38 +86,37 @@ CREATE TABLE `pick_one` (
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `my_referral` varchar(255) DEFAULT NULL,
-  `my_referral_earnings` int(255) NOT NULL DEFAULT 0,
+  `my_referral_earnings` int(11) NOT NULL DEFAULT 0,
   `registered_at` varchar(255) DEFAULT NULL,
-  `acc_number` int(255) NOT NULL DEFAULT 0,
+  `acc_number` int(11) NOT NULL DEFAULT 0,
   `role` varchar(255) NOT NULL DEFAULT 'Player',
   `email` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `status` int(255) DEFAULT 0,
-  `code` int(255) NOT NULL DEFAULT 0,
+  `status` int(11) DEFAULT 0,
+  `code` int(11) NOT NULL DEFAULT 0,
   `profile` varchar(255) NOT NULL DEFAULT 'profile.jpg',
-  `balance` int(255) NOT NULL DEFAULT 0,
-  `total_income` int(255) NOT NULL DEFAULT 0,
-  `number` int(255) NOT NULL DEFAULT 0,
-  `amount` int(255) NOT NULL DEFAULT 0,
+  `balance` DECIMAL(10,5) DEFAULT 0.00000,
+  `total_income` int(11) NOT NULL DEFAULT 0,
+  `number` int(11) NOT NULL DEFAULT 0,
+  `amount` int(11) NOT NULL DEFAULT 0,
   `date_requested` varchar(255) DEFAULT NULL,
   `request_status` varchar(255) DEFAULT NULL,
   `last_login_date` varchar(255) DEFAULT NULL,
-  `daily_login` int(255) NOT NULL DEFAULT 0,
-  `daily_login_earnings` int(255) NOT NULL DEFAULT 0,
+  `daily_login` int(11) NOT NULL DEFAULT 0,
+  `daily_login_earnings` int(11) NOT NULL DEFAULT 0,
   `login_time` varchar(255) DEFAULT NULL,
   `device_id` varchar(255) DEFAULT NULL,
-  `my_invitation_code` varchar(255) DEFAULT NULL
+  `my_invitation_code` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
--- INSERT INTO `users` (`id`, `my_referral`, `my_referral_earnings`, `registered_at`, `terms`, `acc_number`, `role`, `email`, `username`, `password`, `status`, `code`, `profile`, `balance`, `total_income`, `number`, `amount`, `date_requested`, `request_status`, `last_login_date`, `daily_login`, `daily_login_earnings`, `login_time`, `device_id`, `my_invitation_code`) VALUES
--- (2, 'C2OTL8IWAX', 0, 'Fri, 27 Feb 2026 02:31 PM', 0, '29471782', 'Player', 'njverzosa24@gmail.com', 'Developer', '$2y$10$3LCv.cUoYmhxGXRH.GEJgOxqNlPoSbN8Hg8VtYHEKSzjCSGfte49a', 1, 0, 'profile.jpg', 50, 0, NULL, NULL, NULL, NULL, 'Sun, 1 Mar 2026', 20, 0, '1:30 PM', '5371a81f-38d8-4df2-b4a9-f0269c58ab51', NULL);
 
 --
 -- Indexes for dumped tables
@@ -188,13 +187,4 @@ ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-
--- For users table balance column
-ALTER TABLE users MODIFY balance DECIMAL(10,2) DEFAULT 0.00;
-
--- For data_entry count column  
-ALTER TABLE data_entry MODIFY count DECIMAL(10,2) DEFAULT 0.00;

@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchUserProgress() {
     fetch(
-      `collectData.php?acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}`,
+      `displayData.php?acc_number=${encodeURIComponent(acc_number)}&email=${encodeURIComponent(userEmail)}`,
     )
       .then((response) => response.json())
       .then((data) => {
@@ -202,8 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   function InsertDATA() {
-      const scoreValue = 1;
-
+      const scoreValue = 1; //default is 1
     fetch(`insertData.php`, {
       method: "POST",
       headers: {
@@ -217,8 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .then((data) => {
         if (data.success) {
-          window.reload();
-          fetchUserProgress();
+           fetchUserProgress();
         } else {
           console.error("Failed to save progress:", data.message);
         }
